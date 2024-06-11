@@ -1,0 +1,62 @@
+/* 设置swiper组件的宽高 */
+.swiper {
+  width: 100%;
+}
+/* 设置swiper组件里面图片的宽高 */
+.image {
+  width: 100%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30rpx;
+}
+
+.title {
+  display: flex;
+  font-size: larger;
+}
+
+.inputRow {
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+/*分割线样式*/
+.divLine {
+  background: #e0e3da;
+  width: 80%;
+  height: 5rpx;
+}
+
+.inputRow1 {
+  margin-top: 26rpx;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.phone_number {
+  margin-left: 40rpx;
+}
+
+.content1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10rpx;
+}
+
+.buttonStyle {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  width: 60%;
+}
+
+.place {
+  font-style: italic;
+}

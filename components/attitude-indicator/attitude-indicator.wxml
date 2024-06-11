@@ -1,0 +1,3 @@
+<view class="container">
+  <canvas type="2d" id="horizon" class="horizon" style="width: 100rpx; height: 100rpx;"></canvas>
+</view>

@@ -1,0 +1,27 @@
+<view class="top">
+  <!-- <view class="top-row"> -->
+  <!-- <text class="iconfont icon-rss-simple"> {{topValue.rssi}}</text>
+    <text class="iconfont icon--GPS"> {{topValue.gps}}</text>
+    <text class="iconfont icon-a-iconyongdianliang"> {{topValue.used}} mAh</text>
+    <text class="iconfont icon-dianliu"> {{topValue.current}} A</text>
+    <text class="iconfont icon-xudianchidianya"> {{topValue.voltage}} V</text>
+    <text class="iconfont icon-sudu"> {{topValue.speed}} km/h</text>
+    <text class="iconfont icon-gaodu"> {{topValue.altitude}} M</text>
+    <text class="iconfont icon-feihangmoshi-L"> {{topValue.fm}}</text> -->
+  <view class="top-bar">
+    <slot name="rssi"></slot>
+    <slot name="gps"></slot>
+    <slot name="used"></slot>
+    <slot name="current"></slot>
+    <slot name="voltage"></slot>
+    <slot name="speed"></slot>
+    <slot name="altitude"></slot>
+    <!-- <slot name="heading"></slot> -->
+    <slot name="throttle"></slot>
+    <slot name="distance"></slot>
+    <slot name="fix"></slot>
+    <slot name="fm"></slot>
+
+  </view>
+  <!-- </view> -->
+</view>

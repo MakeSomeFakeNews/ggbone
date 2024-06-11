@@ -1,0 +1,217 @@
+<map id="map" class="map-view" enable-satellite="{{maps.isSatelliteMap}}" markers="{{markers}}" polyline="{{polyline}}" longitude="{{longitude}}" latitude="{{latitude}}" show-location="true" arrowLine="true" scale="15">
+  <!-- 头部 -->
+  <header>
+    <!-- <view class="top-item" slot="rssi">
+      <image class="header-img" src="/images/ground/rssi.png" mode="aspectFit"></image>
+      <text class="top-text">{{rcChannelRaw.rssi}}</text>
+    </view>
+    <view class="top-item" slot="gps">
+      <image class="header-img" src="/images/ground/gps.png" mode="aspectFit"></image>
+      <text class="top-text">{{gpsRawInt.satelliteCount}}</text>
+    </view>
+    <view class="top-item" slot="used">
+      <image class="header-img" src="/images/ground/used.png" mode="aspectFit"></image>
+      <text class="top-text">{{systemStatus.used}} mAh</text>
+    </view>
+    <view class="top-item" slot="current">
+      <image class="header-img" src="/images/ground/current.png" mode="aspectFit"></image>
+      <text class="top-text">{{systemStatus.current}} A</text>
+    </view>
+    <view class="top-item" slot="voltage">
+      <image class="header-img" src="/images/ground/voltage.png" mode="aspectFit"></image>
+      <text class="top-text">{{systemStatus.voltage}} V</text>
+    </view>
+    <view class="top-item" slot="speed">
+      <image class="header-img" src="/images/ground/speed.png" mode="aspectFit"></image>
+      <text class="top-text">{{vrfHud.speed}} km/h</text>
+    </view>
+    <view class="top-item" slot="altitude">
+      <image class="header-img" src="/images/ground/altitude.png" mode="aspectFit"></image>
+      <text class="top-text">{{vrfHud.altitude}} M</text>
+    </view>
+    <view class="top-item" slot="fm">
+      <image class="header-img" src="/images/ground/mode.png" mode="aspectFit"></image>
+      <text class="top-text">{{mode}}</text>
+    </view> -->
+
+    <view class="status-item" slot="rssi">
+      <image class="icon" src="/images/ground/rssi.png" />
+      <text class="value">{{rcChannelRaw.rssi}}</text>
+    </view>
+    <view class="status-item" slot="gps">
+      <image class="icon" src="/images/ground/gps.png" />
+      <text class="value">{{gpsRawInt.satelliteCount}}</text>
+    </view>
+    <view class="status-item" slot="used">
+      <image class="icon" src="/images/ground/used.png" />
+      <text class="value">{{systemStatus.used}} mAh</text>
+    </view>
+    <view class="status-item" slot="voltage">
+      <image class="icon" src="/images/ground/voltage.png" />
+      <text class="value">{{systemStatus.voltage}} V</text>
+    </view>
+    <view class="status-item" slot="used">
+      <image class="icon" src="/images/ground/current.png" />
+      <text class="value">{{systemStatus.current}} A</text>
+    </view>
+    <view class="status-item" slot="speed">
+      <image class="icon" src="/images/ground/speed.png" />
+      <text class="value">{{vrfHud.speed}}km/h</text>
+    </view>
+    <view class="status-item" slot="altitude">
+      <image class="icon" src="/images/ground/altitude.png" />
+      <text class="value">{{vrfHud.altitude}} m</text>
+    </view>
+    <view class="status-item" slot="fm">
+      <image class="icon" src="/images/ground/mode.png" />
+      <text class="value">{{mode}}</text>
+    </view>
+    <view class="status-item" slot="heading">
+      <image class="icon" style="transform: rotate({{vrfHud.heading}}deg);" src="/images/ground/heading.png" />
+      <text class="value">{{vrfHud.heading}}</text>
+    </view>
+    <view class="status-item" slot="throttle">
+      <image class="icon" src="/images/ground/throttle.png" />
+      <text class="value">{{vrfHud.throttle || 0}}%</text>
+    </view>
+    <view class="status-item" slot="distance">
+      <image class="icon" src="/images/ground/distance.png" />
+      <text class="value">{{distance}}km</text>
+    </view>
+    <view class="status-item" slot="distance">
+      <image class="icon" src="/images/ground/lock-location.png" />
+      <text class="value">{{gpsRawInt.fixType>2?"3d":"未定位"}}</text>
+    </view>
+  </header>
+  <!-- 姿态球 -->
+  <movable-area class="map-view" style="pointer-events: none;">
+    <movable-view direction="all" inertia="true" out-of-bounds="false" x="20rpx" y="40rpx">
+      <!-- <view bind:tap="invertPitch" class="ball">
+        <view class="instrument attitude">
+          <view class="roll box" style="transform: rotate({{maps.isInvertRoll?roll*0.55*-1:roll*0.55}}deg);transform-style: preserve-3d;">
+            <image src="/images/ground/horizon_back.png" class="box" />
+            <view class="pitch box" style="top:{{maps.isInvertBall?pitch*0.1* -1:pitch*0.1}}%;">
+              <image src="/images/ground/horizon_ball.png" class="box" />
+            </view>
+            <image src="/images/ground/horizon_circle.png" class="box" />
+          </view>
+          <view class="mechanics box">
+            <image src="/images/ground/horizon_mechanics.png" class="box" />
+            <image src="/images/ground/fi_circle.png" class="box" />
+          </view>
+        </view>
+      </view> -->
+      <attitude-indicator pitch="{{maps.isInvertBall?pitch*-1:pitch}}" roll="{{maps.isInvertRoll?roll*-1:roll}}"></attitude-indicator>
+    </movable-view>
+  </movable-area>
+
+
+
+  <!-- 设置按钮 -->
+  <!-- <view class="setting-view">
+    <text>更多</text>
+    <image class="setting-image" src="../../images/ground/more.png" mode="aspectFit" bind:tap="showDetail" />
+    <text>设置</text>
+    <image class="setting-image" src="../../images/ground/setting.png" mode="aspectFit" bind:tap="openSetting" />
+  </view> -->
+  <view class="side-bar">
+    <view class="expanded-bar" wx:if="{{expanded}}">
+      <view class="expanded-item" bindtap="openSetting">
+        <image class="side-bar-icon" src="/images/ground/setting.png" />
+        <text class="value">设置</text>
+      </view>
+      <view class="expanded-item" bindtap="showDetail">
+        <image class="side-bar-icon" src="/images/ground/more.png" />
+        <text class="value">更多</text>
+      </view>
+      <view class="expanded-item" bindtap="flyHistory">
+        <image class="side-bar-icon" src="/images/ground/history.png" />
+        <text class="value">轨迹</text>
+      </view>
+      <view class="expanded-item" bindtap="trackPlane">
+        <image class="side-bar-icon" src="/images/ground/location.png" />
+        <text class="value">跟踪</text>
+      </view>
+      <view class="expanded-item" bindtap="moveToMyLocation">
+        <image class="side-bar-icon" src="/images/ground/my-home.png" />
+        <text class="value">定位</text>
+      </view>
+    </view>
+    <view class="expand-button" bindtap="toggleExpand">
+      <image style="width: 44rpx;height: 44rpx;" src="/images/ground/plus1.png" />
+    </view>
+
+  </view>
+  <view class="detail" wx:if="{{showDetail}}">
+    <view class="detail-item">
+      <text>经度:</text>
+    </view>
+    <view class="detail-item">
+      <text>{{showlongitude}}</text>
+    </view>
+    <view class="detail-item">
+      <text>纬度:</text>
+    </view>
+    <view class="detail-item">
+      <text>{{showlatitude}}</text>
+    </view>
+    <view class="detail-item">
+      <text>空速: {{vrfHud.airSpeed}} KM/H</text>
+    </view>
+    <view class="detail-item">
+      <text>地速: {{vrfHud.speed}} KM/H</text>
+    </view>
+    <view class="detail-item">
+      <text>爬升率: {{vrfHud.vspeed}}</text>
+    </view>
+    <view class="detail-item">
+      <text>离家距离: {{distance}} M</text>
+    </view>
+    <view bind:tap="flyHistory" class="detail-item">
+      <button>飞行记录</button>
+    </view>
+    <view bind:tap="flyHistory" class="detail-item">
+      <button>编队飞行</button>
+    </view>
+    <view class="detail-item">
+      <button>返航</button>
+    </view>
+    <view bind:tap="findPlane" class="detail-item">
+      <button>找飞机</button>
+    </view>
+  </view>
+  <!-- 设置 -->
+  <van-popup show="{{ showSetting }}" bind:close="openSetting" custom-style="width:35%;height:66%;">
+    <setting isConnect="{{ isConnect }}" devices="{{ devices }}" mapType="{{mapType}}" bind:connect="connect" />
+  </van-popup>
+  <van-toast id="van-toast" />
+  <van-dialog id="van-dialog" />
+  <!-- 底部 -->
+  <!-- <footer>
+    <view class="item" bind:tap="trackPlane">
+      <image class="item-img" src="/images/ground/location.png" mode="aspectFit" />
+      <text>跟踪</text>
+    </view>
+
+    <view class="top-item">
+      <image style="transform: rotate({{vrfHud.heading}}deg);" class="header-img" src="/images/ground/heading.png" mode="aspectFit"></image>
+      <text class="top-text">{{vrfHud.heading}} °</text>
+    </view>
+    <view class="top-item">
+      <image class="header-img" src="/images/ground/throttle.png" mode="aspectFit"></image>
+      <text class="top-text">{{vrfHud.throttle || 0}} %</text>
+    </view>
+    <view class="top-item">
+      <image class="header-img" src="/images/ground/distance.png" mode="aspectFit"></image>
+      <text class="footer-text">{{distance}} M</text>
+    </view>
+    <view class="top-item">
+      <image class="header-img" src="/images/ground/lock-location.png" mode="aspectFit"></image>
+      <text class="footer-text">{{gpsRawInt.fixType>2?"3d定位":"未定位"}}</text>
+    </view>
+    <view class="item" bind:tap="moveToMyLocation">
+      <image class="item-img" src="/images/ground/my-home.png" mode="aspectFit" />
+      <text>定位</text>
+    </view>
+  </footer> -->
+</map>

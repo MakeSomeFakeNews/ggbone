@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "header": "/components/header/header",
+    "footer": "/components/footer/footer",
+    "setting": "/components/setting/setting",
+    "login": "/components/login/login",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "attitude-indicator": "/components/attitude-indicator/attitude-indicator"
+  },
+  "pageOrientation": "landscape",
+  "navigationStyle": "custom",
+  "disableScroll": true
+}

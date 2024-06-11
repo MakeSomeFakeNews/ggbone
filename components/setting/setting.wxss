@@ -1,0 +1,30 @@
+.ble-list {
+  width: 100%;
+  height:180rpx;
+  overflow: scroll;
+}
+.bleItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14rpx;
+  border-bottom: 1px solid #eee;
+}
+.name {
+  font-size: 12rpx;
+  font-weight: bold;
+}
+.rssi {
+  font-size: 12rpx;
+  color: #999;
+}
+.page-section {
+  text-align: center;
+}
+.master {
+  height: 150rpx;
+}
+.value-class {
+  flex: none !important;
+}

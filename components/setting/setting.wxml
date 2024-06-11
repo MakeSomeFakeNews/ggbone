@@ -1,0 +1,58 @@
+<view>
+  <van-tabs active="{{ active }}" animated swipeable type="line">
+    <van-tab title="蓝牙设置">
+        <view class="ble-list">
+          <view wx:for="{{devices}}" wx:key="index">
+            <view class="bleItem" bindtap="connect" data-device="{{item}}">
+              <view class="name">{{item.name}}</view>
+              <view class="rssi">信号强度：{{item.RSSI}}</view>
+            </view>
+          </view>
+        </view>
+    </van-tab>
+    <van-tab title="地图设置">
+      <van-checkbox-group value="{{ map.checkResult }}" bind:change="onCheckBoxChange">
+        <van-cell-group>
+          <van-cell wx:for="{{ list }}" wx:key="index" title="{{ item }}" value-class="value-class" clickable data-index="{{ index }}" bind:click="toggle">
+            <van-checkbox class="checkboxes-{{ index }}" name="{{ item }}" />
+          </van-cell>
+        </van-cell-group>
+      </van-checkbox-group>
+    </van-tab>
+
+    <van-tab title="信号大师">
+      <view class="master">
+        <radio-group bindchange="rxChange">
+          <view class="page-section">
+            <van-divider contentPosition="center">接收机类型</van-divider>
+            <label class="radio">
+              <radio value="r1" checked="true" />expresslrs
+            </label>
+            <label class="radio">
+              <radio value="r2" />s.bus
+            </label>
+          </view>
+        </radio-group>
+        <radio-group bindchange="txChange">
+          <view class="page-section">
+            <van-divider contentPosition="center">高频头类型</van-divider>
+            <label class="radio">
+              <radio value="r1" checked="true" />expresslrs
+            </label>
+            <label class="radio">
+              <radio value="r2" />s.bus/其他
+            </label>
+            <van-cell title="淘宝搜索" label="淘宝搜索信号大师，说是小程序来的有优惠" />
+          </view>
+        </radio-group>
+      </view>
+    </van-tab>
+    <van-tab title="关于">
+      <van-cell title="说明" label="目前支持的协议:mavlink1,mavlink2,crsf,s.port。纯本地解码，不上传任何数据。轨迹以及编队功能以及实现，但由于我域名还没备案，没法开放功能" />
+      <van-cell title="联系反馈" label="问题反馈联系微信:zhsgdsza">
+        <button open-type="contact" session-from="weapp">点击联系我</button>
+      </van-cell>
+    </van-tab>
+  </van-tabs>
+  <van-toast id="van-toast" />
+</view>
